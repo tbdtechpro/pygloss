@@ -9,12 +9,12 @@ with open(os.path.join(here, "README.md"), encoding="utf-8") as f:
     long_description = f.read()
 
 setup(
-    name="lipgloss",
+    name="pygloss",
     version="0.1.0",
     description="CSS-like terminal styling for Python (port of Go Lip Gloss)",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/tbdtechpro/lipgloss",
+    url="https://github.com/tbdtechpro/pygloss",
     author="Charm",
     author_email="vt100@charm.sh",
     license="MIT",
@@ -55,15 +55,15 @@ setup(
         "console",
         "styling",
         "ansi",
-        "lipgloss",
+        "pygloss",
         "charm",
     ],
     package_data={
-        "lipgloss": ["py.typed"],
+        "pygloss": ["py.typed"],
     },
     project_urls={
-        "Bug Reports": "https://github.com/tbdtechpro/lipgloss/issues",
-        "Source": "https://github.com/tbdtechpro/lipgloss",
+        "Bug Reports": "https://github.com/tbdtechpro/pygloss/issues",
+        "Source": "https://github.com/tbdtechpro/pygloss",
         "Original Go Library": "https://github.com/charmbracelet/lipgloss",
     },
 )
