@@ -45,6 +45,12 @@ Pre-alpha. The Python port has full feature parity with the Go library for all c
 ## Python Quick Start
 
 ```bash
+pip install pygloss
+```
+
+Or for development (editable install with dev dependencies):
+
+```bash
 pip install -e ".[dev]"
 ```
 
