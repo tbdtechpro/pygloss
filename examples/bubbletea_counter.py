@@ -17,38 +17,38 @@ from typing import Optional
 
 import bubbletea as tea
 
-import lipgloss
-from lipgloss import join_vertical
-from lipgloss.borders import rounded_border
+import pygloss
+from pygloss import join_vertical
+from pygloss.borders import rounded_border
 
 # ── Styles ────────────────────────────────────────────────────────────────────
 
 TITLE_STYLE = (
-    lipgloss.Style()
+    pygloss.Style()
     .bold(True)
-    .foreground(lipgloss.Color("#FAFAFA"))
-    .background(lipgloss.Color("#7D56F4"))
+    .foreground(pygloss.Color("#FAFAFA"))
+    .background(pygloss.Color("#7D56F4"))
     .padding(0, 2)
 )
 
 COUNT_STYLE = (
-    lipgloss.Style()
+    pygloss.Style()
     .bold(True)
-    .foreground(lipgloss.Color("#04B575"))
+    .foreground(pygloss.Color("#04B575"))
     .width(16)
-    .align(lipgloss.Center)
+    .align(pygloss.Center)
 )
 
 BOX_STYLE = (
-    lipgloss.Style()
+    pygloss.Style()
     .border_style(rounded_border())
     .border(rounded_border(), True)
-    .border_foreground(lipgloss.Color("62"))
+    .border_foreground(pygloss.Color("62"))
     .padding(1, 3)
-    .align(lipgloss.Center)
+    .align(pygloss.Center)
 )
 
-HELP_STYLE = lipgloss.Style().faint(True)
+HELP_STYLE = pygloss.Style().faint(True)
 
 # ── Model ─────────────────────────────────────────────────────────────────────
 
@@ -80,7 +80,7 @@ class CounterModel(tea.Model):
         count_str = COUNT_STYLE.render(str(self.count))
         box = BOX_STYLE.render(count_str)
         help_text = HELP_STYLE.render("+ increment  − decrement  r reset  q quit")
-        return join_vertical(lipgloss.Center, title, "", box, "", help_text)
+        return join_vertical(pygloss.Center, title, "", box, "", help_text)
 
 
 # ── Entry point ───────────────────────────────────────────────────────────────

@@ -6,7 +6,7 @@ Palette source: https://draculatheme.com/contribute
 
 from dataclasses import dataclass
 
-from lipgloss.color import Color
+from pygloss.color import Color
 
 
 @dataclass(frozen=True)

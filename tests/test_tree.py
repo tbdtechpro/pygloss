@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import re
 
-from lipgloss.tree import (
+from pygloss.tree import (
     DefaultEnumerator,
     DefaultIndenter,
     Leaf,
@@ -358,9 +358,9 @@ def test_offset_trims_last() -> None:
 
 
 def test_item_style_applied() -> None:
-    import lipgloss
+    import pygloss
 
-    bold = lipgloss.Style().bold(True)
+    bold = pygloss.Style().bold(True)
     t = Tree().child("hello").item_style(bold)
     out = t.render()
     # Styled output should contain "hello" and some ANSI codes.
@@ -368,9 +368,9 @@ def test_item_style_applied() -> None:
 
 
 def test_root_style_applied() -> None:
-    import lipgloss
+    import pygloss
 
-    style = lipgloss.Style().bold(True)
+    style = pygloss.Style().bold(True)
     t = Tree().root("Root").child("A").root_style(style)
     out = _strip_ansi(t.render())
     assert "Root" in out

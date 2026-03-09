@@ -6,7 +6,7 @@ Palette source: https://gleam.run/branding/
 
 from dataclasses import dataclass
 
-from lipgloss.color import Color
+from pygloss.color import Color
 
 
 @dataclass(frozen=True)

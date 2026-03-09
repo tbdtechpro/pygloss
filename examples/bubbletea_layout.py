@@ -16,24 +16,24 @@ from typing import Optional
 
 import bubbletea as tea
 
-import lipgloss
-from lipgloss import join_horizontal, join_vertical, place
-from lipgloss import table as tbl
-from lipgloss.borders import normal_border, rounded_border, thick_border
+import pygloss
+from pygloss import join_horizontal, join_vertical, place
+from pygloss import table as tbl
+from pygloss.borders import normal_border, rounded_border, thick_border
 
 # ── Palette ───────────────────────────────────────────────────────────────────
 
-PURPLE = lipgloss.Color("#7D56F4")
-PINK = lipgloss.Color("#E377C2")
-GREEN = lipgloss.Color("#04B575")
-GRAY = lipgloss.Color("240")
-LIGHT_GRAY = lipgloss.Color("245")
-HIGHLIGHT = lipgloss.Color("99")
+PURPLE = pygloss.Color("#7D56F4")
+PINK = pygloss.Color("#E377C2")
+GREEN = pygloss.Color("#04B575")
+GRAY = pygloss.Color("240")
+LIGHT_GRAY = pygloss.Color("245")
+HIGHLIGHT = pygloss.Color("99")
 
 # ── Panel styles ──────────────────────────────────────────────────────────────
 
 PANEL_ACTIVE = (
-    lipgloss.Style()
+    pygloss.Style()
     .border_style(rounded_border())
     .border(rounded_border(), True)
     .border_foreground(PURPLE)
@@ -41,20 +41,20 @@ PANEL_ACTIVE = (
 )
 
 PANEL_INACTIVE = (
-    lipgloss.Style()
+    pygloss.Style()
     .border_style(normal_border())
     .border(normal_border(), True)
     .border_foreground(GRAY)
     .padding(0, 1)
 )
 
-TITLE_STYLE = lipgloss.Style().bold(True).foreground(PURPLE)
+TITLE_STYLE = pygloss.Style().bold(True).foreground(PURPLE)
 
-LABEL_STYLE = lipgloss.Style().foreground(GRAY)
+LABEL_STYLE = pygloss.Style().foreground(GRAY)
 
-VALUE_STYLE = lipgloss.Style().foreground(HIGHLIGHT)
+VALUE_STYLE = pygloss.Style().foreground(HIGHLIGHT)
 
-HELP_STYLE = lipgloss.Style().faint(True)
+HELP_STYLE = pygloss.Style().faint(True)
 
 # ── Panels ────────────────────────────────────────────────────────────────────
 
@@ -74,7 +74,7 @@ def _stats_panel(active: bool) -> str:
 
     title = TITLE_STYLE.render("Stats")
     body = "\n".join(f"{k}  {v}" for k, v in rows)
-    content = join_vertical(lipgloss.Top, title, "", body)
+    content = join_vertical(pygloss.Top, title, "", body)
     return style.width(24).render(content)
 
 
@@ -82,11 +82,11 @@ def _languages_panel(active: bool) -> str:
     """Table of languages rendered with lipgloss table sub-package."""
     panel_style = PANEL_ACTIVE if active else PANEL_INACTIVE
 
-    header_style = lipgloss.Style().bold(True).foreground(lipgloss.Color("#FAFAFA"))
-    even_style = lipgloss.Style().foreground(LIGHT_GRAY)
-    odd_style = lipgloss.Style().foreground(GRAY)
+    header_style = pygloss.Style().bold(True).foreground(pygloss.Color("#FAFAFA"))
+    even_style = pygloss.Style().foreground(LIGHT_GRAY)
+    odd_style = pygloss.Style().foreground(GRAY)
 
-    def style_func(row: int, col: int) -> lipgloss.Style:
+    def style_func(row: int, col: int) -> pygloss.Style:
         if row == tbl.HeaderRow:
             return header_style
         return even_style if row % 2 == 0 else odd_style
@@ -94,7 +94,7 @@ def _languages_panel(active: bool) -> str:
     t = (
         tbl.Table()
         .border(thick_border())
-        .border_style(lipgloss.Style().foreground(PURPLE))
+        .border_style(pygloss.Style().foreground(PURPLE))
         .style_func(style_func)
         .headers("Language", "Year", "Paradigm")
         .row("Python", "1991", "Multi")
@@ -104,7 +104,7 @@ def _languages_panel(active: bool) -> str:
     )
 
     title = TITLE_STYLE.render("Languages")
-    return panel_style.render(join_vertical(lipgloss.Top, title, "", t.render()))
+    return panel_style.render(join_vertical(pygloss.Top, title, "", t.render()))
 
 
 def _history_panel(active: bool) -> str:
@@ -122,13 +122,13 @@ def _history_panel(active: bool) -> str:
     title = TITLE_STYLE.render("History")
     lines = []
     for color, icon, kind, detail in events:
-        icon_str = lipgloss.Style().foreground(color).render(icon)
-        kind_str = lipgloss.Style().foreground(GRAY).render(kind)
-        detail_str = lipgloss.Style().foreground(LIGHT_GRAY).render(detail)
+        icon_str = pygloss.Style().foreground(color).render(icon)
+        kind_str = pygloss.Style().foreground(GRAY).render(kind)
+        detail_str = pygloss.Style().foreground(LIGHT_GRAY).render(detail)
         lines.append(f"{icon_str} {kind_str} {detail_str}")
 
     body = "\n".join(lines)
-    content = join_vertical(lipgloss.Top, title, "", body)
+    content = join_vertical(pygloss.Top, title, "", body)
     return panel_style.width(38).render(content)
 
 
@@ -158,9 +158,9 @@ class LayoutModel(tea.Model):
     def view(self) -> str:
         # ── header ────────────────────────────────────────────────────────────
         header = (
-            lipgloss.Style()
+            pygloss.Style()
             .bold(True)
-            .foreground(lipgloss.Color("#FAFAFA"))
+            .foreground(pygloss.Color("#FAFAFA"))
             .background(PURPLE)
             .padding(0, 2)
             .render("  Lipgloss + Bubbletea Layout Showcase  ")
@@ -170,9 +170,9 @@ class LayoutModel(tea.Model):
         tabs = []
         for i, name in enumerate(PANELS):
             if i == self.active:
-                tab = lipgloss.Style().bold(True).foreground(PURPLE).render(f"[ {name} ]")
+                tab = pygloss.Style().bold(True).foreground(PURPLE).render(f"[ {name} ]")
             else:
-                tab = lipgloss.Style().foreground(GRAY).render(f"  {name}  ")
+                tab = pygloss.Style().foreground(GRAY).render(f"  {name}  ")
             tabs.append(tab)
         tab_bar = "  ".join(tabs)
 
@@ -181,19 +181,19 @@ class LayoutModel(tea.Model):
         langs = _languages_panel(self.active == 1)
         hist = _history_panel(self.active == 2)
 
-        panels_row = join_horizontal(lipgloss.Top, stats, "  ", langs, "  ", hist)
+        panels_row = join_horizontal(pygloss.Top, stats, "  ", langs, "  ", hist)
 
         # ── status bar ────────────────────────────────────────────────────────
         status = place(
-            lipgloss.width(panels_row),
+            pygloss.width(panels_row),
             1,
-            lipgloss.Left,
-            lipgloss.Center,
+            pygloss.Left,
+            pygloss.Center,
             HELP_STYLE.render("tab next panel  shift+tab prev  q quit"),
-            lipgloss.whitespace_background(lipgloss.Color("235")),
+            pygloss.whitespace_background(pygloss.Color("235")),
         )
 
-        return join_vertical(lipgloss.Left, header, "", tab_bar, "", panels_row, "", status)
+        return join_vertical(pygloss.Left, header, "", tab_bar, "", panels_row, "", status)
 
 
 # ── Entry point ───────────────────────────────────────────────────────────────

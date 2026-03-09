@@ -10,7 +10,7 @@ bubbletea's Renderer erases previous frames by counting newlines
 codes do not affect ``\\n`` count, so lipgloss output is structurally compatible.
 These tests confirm:
 
-  1. lipgloss.width() / height() give correct ANSI-stripped measurements.
+  1. pygloss.width() / height() give correct ANSI-stripped measurements.
   2. A Model whose view() returns lipgloss-styled strings runs without errors.
   3. Multi-line styled output (borders, padding) has correct line counts.
   4. Styled strings survive a round-trip through the renderer write path.
@@ -26,9 +26,9 @@ bubbletea = pytest.importorskip("bubbletea")
 
 import bubbletea as tea  # noqa: E402
 
-import lipgloss  # noqa: E402
-from lipgloss import height, join_vertical, width  # noqa: E402
-from lipgloss.borders import rounded_border  # noqa: E402
+import pygloss  # noqa: E402
+from pygloss import height, join_vertical, width  # noqa: E402
+from pygloss.borders import rounded_border  # noqa: E402
 
 # ── helpers ──────────────────────────────────────────────────────────────────
 
@@ -72,7 +72,7 @@ def run_headless(model: tea.Model, *, timeout: float = 2.0) -> tea.Model:
 class StyledViewModel(tea.Model):
     """Model whose view() returns a lipgloss-styled single-line string."""
 
-    def __init__(self, style: lipgloss.Style, text: str) -> None:
+    def __init__(self, style: pygloss.Style, text: str) -> None:
         self.style = style
         self.text = text
         self.view_calls = 0
@@ -101,10 +101,10 @@ class MultiLineViewModel(tea.Model):
         return self, None
 
     def view(self) -> str:
-        header = lipgloss.Style().bold(True).foreground(lipgloss.Color("99")).render("Header")
-        body = lipgloss.Style().padding(1, 2).render("Body content here")
-        footer = lipgloss.Style().faint(True).render("Footer")
-        self.rendered = join_vertical(lipgloss.Center, header, body, footer)
+        header = pygloss.Style().bold(True).foreground(pygloss.Color("99")).render("Header")
+        body = pygloss.Style().padding(1, 2).render("Body content here")
+        footer = pygloss.Style().faint(True).render("Footer")
+        self.rendered = join_vertical(pygloss.Center, header, body, footer)
         return self.rendered
 
 
@@ -135,9 +135,9 @@ class CounterModel(tea.Model):
         return self, None
 
     def view(self) -> str:
-        label = lipgloss.Style().bold(True).render(f"Count: {self.count}")
+        label = pygloss.Style().bold(True).render(f"Count: {self.count}")
         box = (
-            lipgloss.Style()
+            pygloss.Style()
             .border_style(rounded_border())
             .border(rounded_border(), True)
             .padding(0, 1)
@@ -150,16 +150,16 @@ class CounterModel(tea.Model):
 
 
 def test_width_strips_ansi() -> None:
-    """lipgloss.width() returns visible character width, not byte length."""
-    style = lipgloss.Style().bold(True).foreground(lipgloss.Color("#FF0000"))
+    """pygloss.width() returns visible character width, not byte length."""
+    style = pygloss.Style().bold(True).foreground(pygloss.Color("#FF0000"))
     rendered = style.render("hello")
     assert width(rendered) == 5
     assert len(rendered) > 5  # raw bytes include ANSI codes
 
 
 def test_height_counts_newlines() -> None:
-    """lipgloss.height() counts lines correctly for multi-line styled output."""
-    style = lipgloss.Style().padding(1, 0)  # 1 line top + 1 line bottom padding
+    """pygloss.height() counts lines correctly for multi-line styled output."""
+    style = pygloss.Style().padding(1, 0)  # 1 line top + 1 line bottom padding
     rendered = style.render("text")
     assert height(rendered) == 3  # blank, text, blank
 
@@ -167,7 +167,7 @@ def test_height_counts_newlines() -> None:
 def test_bordered_box_dimensions() -> None:
     """A bordered, padded box has the expected width and height."""
     style = (
-        lipgloss.Style()
+        pygloss.Style()
         .border_style(rounded_border())
         .border(rounded_border(), True)
         .padding(0, 1)
@@ -187,7 +187,7 @@ def test_newline_count_equals_height_minus_one() -> None:
     Verify that lipgloss output's newline count equals height() - 1,
     so the renderer erases exactly the right number of lines.
     """
-    style = lipgloss.Style().border_style(rounded_border()).border(rounded_border(), True)
+    style = pygloss.Style().border_style(rounded_border()).border(rounded_border(), True)
     for text in ["a", "line1\nline2", "x\ny\nz"]:
         rendered = style.render(text)
         assert rendered.count("\n") == height(rendered) - 1
@@ -195,10 +195,10 @@ def test_newline_count_equals_height_minus_one() -> None:
 
 def test_join_vertical_line_count() -> None:
     """join_vertical output has the correct newline count for renderer erase."""
-    a = lipgloss.Style().render("top")
-    b = lipgloss.Style().padding(1, 0).render("middle")
-    c = lipgloss.Style().render("bottom")
-    joined = join_vertical(lipgloss.Top, a, b, c)
+    a = pygloss.Style().render("top")
+    b = pygloss.Style().padding(1, 0).render("middle")
+    c = pygloss.Style().render("bottom")
+    joined = join_vertical(pygloss.Top, a, b, c)
     assert joined.count("\n") == height(joined) - 1
 
 
@@ -207,7 +207,7 @@ def test_join_vertical_line_count() -> None:
 
 def test_styled_view_program_runs() -> None:
     """A Program whose view() returns a lipgloss-styled string runs cleanly."""
-    style = lipgloss.Style().bold(True).foreground(lipgloss.Color("10"))
+    style = pygloss.Style().bold(True).foreground(pygloss.Color("10"))
     model = StyledViewModel(style, "Running!")
     final = run_headless(model)
     assert isinstance(final, StyledViewModel)
@@ -238,9 +238,9 @@ def test_view_ansi_width_does_not_grow_across_updates() -> None:
     corrupting the visible width that the renderer uses for line erasure.
     """
     style = (
-        lipgloss.Style()
+        pygloss.Style()
         .bold(True)
-        .foreground(lipgloss.Color("99"))
+        .foreground(pygloss.Color("99"))
         .border_style(rounded_border())
         .border(rounded_border(), True)
         .width(20)
@@ -268,7 +268,7 @@ def test_program_send_message() -> None:
             return self, None
 
         def view(self) -> str:
-            style = lipgloss.Style().foreground(lipgloss.Color("240"))
+            style = pygloss.Style().foreground(pygloss.Color("240"))
             return style.render(", ".join(self.received) or "waiting")
 
     m = RecordModel()

@@ -4,7 +4,7 @@ Built-in color scheme themes for Lip Gloss.
 Each theme exposes its palette as typed ``Color`` attributes so they can be
 passed directly to ``Style`` methods::
 
-    from lipgloss import Style, themes
+    from pygloss import Style, themes
 
     mocha = themes.catppuccin_mocha
     style = Style().foreground(mocha.mauve).background(mocha.base)

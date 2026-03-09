@@ -4,12 +4,12 @@ table.py — language greeting table, ported from examples/table/languages/main.
 Run with:  python examples/table.py
 """
 
-import lipgloss
-from lipgloss import table
+import pygloss
+from pygloss import table
 
-PURPLE = lipgloss.Color("99")
-GRAY = lipgloss.Color("245")
-LIGHT_GRAY = lipgloss.Color("241")
+PURPLE = pygloss.Color("99")
+GRAY = pygloss.Color("245")
+LIGHT_GRAY = pygloss.Color("241")
 
 ROWS = [
     ["Chinese", "您好", "你好"],
@@ -20,14 +20,14 @@ ROWS = [
     ["English", "You look absolutely fabulous.", "How's it going?"],
 ]
 
-header_style = lipgloss.Style().foreground(PURPLE).bold(True).align(lipgloss.Center)
-cell_style = lipgloss.Style().padding(0, 1).width(14)
+header_style = pygloss.Style().foreground(PURPLE).bold(True).align(pygloss.Center)
+cell_style = pygloss.Style().padding(0, 1).width(14)
 odd_row_style = cell_style.foreground(GRAY)
 even_row_style = cell_style.foreground(LIGHT_GRAY)
-border_style = lipgloss.Style().foreground(PURPLE)
+border_style = pygloss.Style().foreground(PURPLE)
 
 
-def style_func(row: int, col: int) -> lipgloss.Style:
+def style_func(row: int, col: int) -> pygloss.Style:
     if row == table.HeaderRow:
         return header_style
 
@@ -39,7 +39,7 @@ def style_func(row: int, col: int) -> lipgloss.Style:
 
     # Arabic is right-to-left, so right-align those cells.
     if row < len(ROWS) and ROWS[row][0] == "Arabic" and col != 0:
-        style = style.align(lipgloss.Right)
+        style = style.align(pygloss.Right)
 
     return style
 
@@ -47,7 +47,7 @@ def style_func(row: int, col: int) -> lipgloss.Style:
 def main() -> None:
     t = (
         table.Table()
-        .border(lipgloss.thick_border())
+        .border(pygloss.thick_border())
         .border_style(border_style)
         .style_func(style_func)
         .headers("LANGUAGE", "FORMAL", "INFORMAL")

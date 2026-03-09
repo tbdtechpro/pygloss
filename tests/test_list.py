@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import re
 
-from lipgloss.list import (
+from pygloss.list import (
     Alphabet,
     Arabic,
     Asterisk,

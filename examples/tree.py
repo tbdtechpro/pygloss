@@ -6,8 +6,8 @@ Run with:  python examples/tree.py
 
 import os
 
-import lipgloss
-from lipgloss import tree as tr
+import pygloss
+from pygloss import tree as tr
 
 
 def add_branches(root: tr.Tree, path: str) -> None:
@@ -31,8 +31,8 @@ def add_branches(root: tr.Tree, path: str) -> None:
 
 
 def main() -> None:
-    enumerator_style = lipgloss.Style().foreground(lipgloss.Color("240")).padding_right(1)
-    item_style = lipgloss.Style().foreground(lipgloss.Color("99")).bold(True).padding_right(1)
+    enumerator_style = pygloss.Style().foreground(pygloss.Color("240")).padding_right(1)
+    item_style = pygloss.Style().foreground(pygloss.Color("99")).bold(True).padding_right(1)
 
     cwd = os.getcwd()
 

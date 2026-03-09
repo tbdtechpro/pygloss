@@ -1,4 +1,4 @@
-"""Shared pytest fixtures for lipgloss tests."""
+"""Shared pytest fixtures for pygloss tests."""
 
 from __future__ import annotations
 
@@ -6,8 +6,8 @@ import io
 
 import pytest
 
-import lipgloss
-from lipgloss.renderer import ColorProfile, Renderer
+import pygloss
+from pygloss.renderer import ColorProfile, Renderer
 
 
 @pytest.fixture()
@@ -40,6 +40,6 @@ def ascii_renderer() -> Renderer:
 
 
 @pytest.fixture()
-def style(truecolor_renderer: Renderer) -> lipgloss.Style:
+def style(truecolor_renderer: Renderer) -> pygloss.Style:
     """An empty Style bound to the TrueColor renderer."""
     return truecolor_renderer.new_style()

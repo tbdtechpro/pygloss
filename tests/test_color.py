@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from lipgloss.color import (
+from pygloss.color import (
     AdaptiveColor,
     ANSIColor,
     Color,
@@ -11,7 +11,7 @@ from lipgloss.color import (
     NoColor,
     TerminalColor,
 )
-from lipgloss.renderer import Renderer
+from pygloss.renderer import Renderer
 
 # ---------------------------------------------------------------------------
 # Protocol conformance

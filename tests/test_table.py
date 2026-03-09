@@ -4,9 +4,9 @@ from __future__ import annotations
 
 import re
 
-import lipgloss
-from lipgloss.table import Filter, HeaderRow, StringData, Table
-from lipgloss.table.resizing import _median
+import pygloss
+from pygloss.table import Filter, HeaderRow, StringData, Table
+from pygloss.table.resizing import _median
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -192,10 +192,10 @@ def test_table_offset() -> None:
 
 
 def test_table_with_style_func() -> None:
-    header_style = lipgloss.Style().bold(True)
-    data_style = lipgloss.Style()
+    header_style = pygloss.Style().bold(True)
+    data_style = pygloss.Style()
 
-    def sf(row: int, col: int) -> lipgloss.Style:
+    def sf(row: int, col: int) -> pygloss.Style:
         if row == HeaderRow:
             return header_style
         return data_style
@@ -234,7 +234,7 @@ def test_table_str_equals_render() -> None:
 
 
 def test_table_uses_border_object() -> None:
-    from lipgloss.borders import ascii_border
+    from pygloss.borders import ascii_border
 
     t = Table().headers("A").row("b").border(ascii_border())
     out = _strip_ansi(t.render())

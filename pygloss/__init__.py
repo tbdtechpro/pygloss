@@ -5,13 +5,13 @@ Ported from the Go library: https://github.com/charmbracelet/lipgloss
 
 Example usage::
 
-    import lipgloss
+    import pygloss
 
     style = (
-        lipgloss.Style()
+        pygloss.Style()
         .bold(True)
-        .foreground(lipgloss.Color("#FAFAFA"))
-        .background(lipgloss.Color("#7D56F4"))
+        .foreground(pygloss.Color("#FAFAFA"))
+        .background(pygloss.Color("#7D56F4"))
         .padding_top(2)
         .padding_left(4)
         .width(22)

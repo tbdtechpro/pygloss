@@ -5,7 +5,7 @@ Port of: table/table.go, table/rows.go, table/resizing.go
 
 Usage::
 
-    from lipgloss import table
+    from pygloss import table
 
     t = (
         table.Table()

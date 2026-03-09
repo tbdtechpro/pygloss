@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from lipgloss.size import height, size, width
+from pygloss.size import height, size, width
 
 # ---------------------------------------------------------------------------
 # width()

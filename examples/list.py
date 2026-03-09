@@ -4,8 +4,8 @@ list.py — grocery list with custom enumerator, ported from examples/list/groce
 Run with:  python examples/list.py
 """
 
-import lipgloss
-from lipgloss import list as lst
+import pygloss
+from pygloss import list as lst
 
 PURCHASED = {
     "Bananas",
@@ -19,10 +19,10 @@ PURCHASED = {
     "Papaya",
 }
 
-dim = lipgloss.Style().foreground(lipgloss.Color("240"))
-bright = lipgloss.Style().foreground(lipgloss.Color("10"))
-strikethrough_style = lipgloss.Style().strikethrough(True).foreground(lipgloss.Color("240"))
-normal_style = lipgloss.Style().foreground(lipgloss.Color("255"))
+dim = pygloss.Style().foreground(pygloss.Color("240"))
+bright = pygloss.Style().foreground(pygloss.Color("10"))
+strikethrough_style = pygloss.Style().strikethrough(True).foreground(pygloss.Color("240"))
+normal_style = pygloss.Style().foreground(pygloss.Color("255"))
 
 ALL_ITEMS = [
     "Artichoke",

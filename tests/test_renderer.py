@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from lipgloss.renderer import ColorProfile, Renderer
+from pygloss.renderer import ColorProfile, Renderer
 
 # ---------------------------------------------------------------------------
 # Color profile detection

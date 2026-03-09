@@ -5,7 +5,7 @@ Port of: tree/tree.go, tree/children.go, tree/enumerator.go, tree/renderer.go
 
 Usage::
 
-    from lipgloss import tree
+    from pygloss import tree
 
     t = (
         tree.Tree()

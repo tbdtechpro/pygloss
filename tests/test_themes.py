@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-import lipgloss
-from lipgloss.color import Color, TerminalColor
-from lipgloss.themes import (
+import pygloss
+from pygloss.color import Color, TerminalColor
+from pygloss.themes import (
     CatppuccinMochaTheme,
     DraculaTheme,
     GleamTheme,
@@ -14,18 +14,18 @@ from lipgloss.themes import (
 )
 
 # ---------------------------------------------------------------------------
-# Module-level access via lipgloss.themes
+# Module-level access via pygloss.themes
 # ---------------------------------------------------------------------------
 
 
 def test_themes_accessible_from_top_level() -> None:
-    assert hasattr(lipgloss, "themes")
+    assert hasattr(pygloss, "themes")
 
 
 def test_themes_exposes_singletons() -> None:
-    assert lipgloss.themes.catppuccin_mocha is catppuccin_mocha
-    assert lipgloss.themes.dracula is dracula
-    assert lipgloss.themes.gleam is gleam
+    assert pygloss.themes.catppuccin_mocha is catppuccin_mocha
+    assert pygloss.themes.dracula is dracula
+    assert pygloss.themes.gleam is gleam
 
 
 # ---------------------------------------------------------------------------
@@ -68,7 +68,7 @@ def test_catppuccin_mocha_is_frozen() -> None:
 
 
 def test_catppuccin_mocha_usable_in_style() -> None:
-    style = lipgloss.Style().foreground(catppuccin_mocha.mauve).background(catppuccin_mocha.base)
+    style = pygloss.Style().foreground(catppuccin_mocha.mauve).background(catppuccin_mocha.base)
     rendered = style.render("hi")
     assert "hi" in rendered
 
@@ -103,7 +103,7 @@ def test_dracula_is_frozen() -> None:
 
 
 def test_dracula_usable_in_style() -> None:
-    style = lipgloss.Style().foreground(dracula.purple).background(dracula.background)
+    style = pygloss.Style().foreground(dracula.purple).background(dracula.background)
     rendered = style.render("hi")
     assert "hi" in rendered
 
@@ -137,7 +137,7 @@ def test_gleam_is_frozen() -> None:
 
 
 def test_gleam_usable_in_style() -> None:
-    style = lipgloss.Style().foreground(gleam.faff_pink).background(gleam.underwater_blue)
+    style = pygloss.Style().foreground(gleam.faff_pink).background(gleam.underwater_blue)
     rendered = style.render("hi")
     assert "hi" in rendered
 
@@ -148,8 +148,8 @@ def test_gleam_usable_in_style() -> None:
 
 
 def test_singletons_are_identical_on_repeated_import() -> None:
-    from lipgloss.themes import catppuccin_mocha as m1
-    from lipgloss.themes import catppuccin_mocha as m2
+    from pygloss.themes import catppuccin_mocha as m1
+    from pygloss.themes import catppuccin_mocha as m2
 
     assert m1 is m2
 
