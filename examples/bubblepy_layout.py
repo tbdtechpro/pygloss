@@ -14,7 +14,7 @@ Run with:  python examples/bubbletea_layout.py
 
 from typing import Optional
 
-import bubbletea as tea
+import bubblepy as tea
 
 import pygloss
 from pygloss import join_horizontal, join_vertical, place

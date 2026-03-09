@@ -15,7 +15,7 @@ Run with:  python examples/bubbletea_counter.py
 
 from typing import Optional
 
-import bubbletea as tea
+import bubblepy as tea
 
 import pygloss
 from pygloss import join_vertical

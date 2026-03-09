@@ -1,6 +1,6 @@
-# Bubbletea Fork — Known Issues
+# Bubblepy Fork — Known Issues
 
-Issues discovered while integrating `tbdtechpro/bubbletea` with this project.
+Issues discovered while integrating `tbdtechpro/bubblepy` with this project.
 
 ---
 
@@ -63,7 +63,7 @@ the Charm TUI framework will silently get the wrong package.
   or
 - Distribute only via direct git URL until a name is settled:
   ```
-  pip install git+https://github.com/tbdtechpro/bubbletea.git
+  pip install git+https://github.com/tbdtechpro/bubblepy.git
   ```
 
 ---

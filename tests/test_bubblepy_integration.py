@@ -3,9 +3,9 @@ Integration tests verifying that lipgloss ANSI output is compatible with the
 Bubble Tea Python renderer.
 
 The core question: does a lipgloss-rendered string returned from Model.view()
-interact correctly with bubbletea's renderer?
+interact correctly with bubblepy's renderer?
 
-bubbletea's Renderer erases previous frames by counting newlines
+bubblepy's Renderer erases previous frames by counting newlines
 (``view.count("\\n")``) and emitting ``\\x1b[A\\x1b[2K`` per line.  ANSI escape
 codes do not affect ``\\n`` count, so lipgloss output is structurally compatible.
 These tests confirm:
@@ -22,9 +22,9 @@ import time
 from typing import Optional
 
 pytest = __import__("pytest")
-bubbletea = pytest.importorskip("bubbletea")
+bubblepy = pytest.importorskip("bubblepy")
 
-import bubbletea as tea  # noqa: E402
+import bubblepy as tea  # noqa: E402
 
 import pygloss  # noqa: E402
 from pygloss import height, join_vertical, width  # noqa: E402
@@ -34,7 +34,7 @@ from pygloss.borders import rounded_border  # noqa: E402
 
 
 def run_headless(model: tea.Model, *, timeout: float = 2.0) -> tea.Model:
-    """Run a bubbletea Program headlessly and return the final model.
+    """Run a bubblepy Program headlessly and return the final model.
 
     Uses NullRenderer + StringIO output so no TTY is required.
     The calling thread sends quit() after the program starts if it hasn't
@@ -182,7 +182,7 @@ def test_bordered_box_dimensions() -> None:
 
 
 def test_newline_count_equals_height_minus_one() -> None:
-    """bubbletea uses view.count('\\n') to erase previous frames.
+    """bubblepy uses view.count('\\n') to erase previous frames.
 
     Verify that lipgloss output's newline count equals height() - 1,
     so the renderer erases exactly the right number of lines.
