@@ -40,4 +40,4 @@ jobs:
         run: mypy pygloss/ --ignore-missing-imports
 
       - name: pytest
-        run: pytest --cov=lipgloss --cov-fail-under=60 --cov-report=term-missing
+        run: pytest --cov=pygloss --cov-fail-under=60 --cov-report=term-missing
