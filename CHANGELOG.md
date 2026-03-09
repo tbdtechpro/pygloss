@@ -128,5 +128,5 @@ are implemented and tested.
 
 ---
 
-[Unreleased]: https://github.com/tbdtechpro/lipgloss/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/tbdtechpro/lipgloss/releases/tag/v0.1.0
+[Unreleased]: https://github.com/tbdtechpro/pygloss/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/tbdtechpro/pygloss/releases/tag/v0.1.0

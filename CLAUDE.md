@@ -189,7 +189,7 @@ pytest
 ### Python Color Types
 
 ```python
-import lipgloss
+import pygloss
 
 lipgloss.Color("21")                                        # ANSI 256 index
 lipgloss.Color("#FF5733")                                   # True-color hex
@@ -201,7 +201,7 @@ lipgloss.NoColor()                                          # Explicit no-color
 ### Python Style Usage
 
 ```python
-import lipgloss
+import pygloss
 
 style = (
     lipgloss.Style()
@@ -222,21 +222,21 @@ print(style.render("Hello, kitty"))
 
 **table** (stub):
 ```python
-from lipgloss import table
+from pygloss import table
 t = table.Table().headers("Name", "Value").rows([["foo", "bar"]])
 print(t.render())  # NotImplementedError until task 6 is complete
 ```
 
 **list** (stub):
 ```python
-from lipgloss import list as lst
+from pygloss import list as lst
 l = lst.List("A", "B", "C").enumerator(lst.Bullet)
 print(l.render())  # NotImplementedError until task 7 is complete
 ```
 
 **tree** (stub):
 ```python
-from lipgloss import tree
+from pygloss import tree
 t = tree.Tree().root(".").child("A", "B", "C")
 print(t.render())  # NotImplementedError until task 8 is complete
 ```

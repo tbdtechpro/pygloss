@@ -1,4 +1,4 @@
-# lipgloss — Python port (experiment)
+# pygloss — Python port of Lip Gloss
 
 This repository is an experiment to explore how feasible it is to translate a non-trivial Go library into idiomatic Python using AI-assisted ("vibe coded") development with minimal direct human authorship of the code itself.
 
@@ -22,7 +22,7 @@ The subject of the translation is [Lip Gloss](https://github.com/charmbracelet/l
 
 ## Status
 
-Pre-alpha. The Python port has full feature parity with the Go library for all core and sub-package features. The Go source remains as the reference implementation.
+Pre-alpha. The Python port has full feature parity with the Go library for all core and sub-package features. The Go source was used as the reference implementation during development but has been removed from this repo.
 
 | Area | Status |
 |------|--------|
@@ -49,13 +49,13 @@ pip install -e ".[dev]"
 ```
 
 ```python
-import lipgloss
+import pygloss
 
 style = (
-    lipgloss.Style()
+    pygloss.Style()
     .bold(True)
-    .foreground(lipgloss.Color("#FAFAFA"))
-    .background(lipgloss.Color("#7D56F4"))
+    .foreground(pygloss.Color("#FAFAFA"))
+    .background(pygloss.Color("#7D56F4"))
     .padding_top(1)
     .padding_left(4)
     .width(22)
@@ -63,13 +63,13 @@ style = (
 print(style.render("Hello, kitty"))
 
 # Borders
-box = lipgloss.Style().border_style(lipgloss.rounded_border()).render("Hi!")
+box = pygloss.Style().border_style(pygloss.rounded_border()).render("Hi!")
 print(box)
 
 # Join blocks side by side
-left  = lipgloss.Style().width(10).render("Left")
-right = lipgloss.Style().width(10).render("Right")
-print(lipgloss.join_horizontal(lipgloss.Top, left, right))
+left  = pygloss.Style().width(10).render("Left")
+right = pygloss.Style().width(10).render("Right")
+print(pygloss.join_horizontal(pygloss.Top, left, right))
 ```
 
 ```bash

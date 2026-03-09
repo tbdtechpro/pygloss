@@ -2,7 +2,7 @@
 
 > **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
 
-**Goal:** Strip Go artifacts, rename the Python package from `lipgloss` to `pygloss`, update `bubbletea` references to `bubblepy`, and update all documentation to reflect the new naming.
+**Goal:** Strip Go artifacts, rename the Python package from `lipgloss` to `pygloss`, update `bubblepy` references to `bubblepy`, and update all documentation to reflect the new naming.
 
 **Architecture:** Three independent concerns executed in sequence: (1) delete Go files, (2) rename the Python package directory and fix all import references, (3) rename bubbletea files/imports and update docs. Each concern is independently testable via `pytest`.
 
@@ -62,7 +62,7 @@ git rm .github/workflows/build.yml .github/workflows/lint.yml .github/workflows/
 **Step 6: Verify Python package is intact**
 
 ```bash
-python3 -c "import sys; sys.path.insert(0, '.'); import lipgloss; print('OK')"
+python3 -c "import sys; sys.path.insert(0, '.'); import pygloss; print('OK')"
 ```
 
 Expected: `OK`
@@ -77,9 +77,9 @@ git commit -m "chore: remove Go source files and Go-only tooling"
 
 ### Task 2: Rename Python package directory `lipgloss/` → `pygloss/`
 
-The package directory rename must be done with `git mv` so git tracks it. After renaming, all `import lipgloss` and `from lipgloss` statements in Python files need updating. The internal package files use relative imports (`from ..style import Style`) so they do NOT need updating.
+The package directory rename must be done with `git mv` so git tracks it. After renaming, all `import pygloss` and `from pygloss` statements in Python files need updating. The internal package files use relative imports (`from ..style import Style`) so they do NOT need updating.
 
-**Files with `import lipgloss` / `from lipgloss` that must be updated:**
+**Files with `import pygloss` / `from pygloss` that must be updated:**
 - `tests/conftest.py`
 - `tests/test_borders.py`
 - `tests/test_bubbletea_integration.py`
@@ -109,16 +109,16 @@ cd /home/matt/github/pygloss
 git mv lipgloss pygloss
 ```
 
-**Step 2: Bulk-replace `import lipgloss` → `import pygloss` in all Python files**
+**Step 2: Bulk-replace `import pygloss` → `import pygloss` in all Python files**
 
 ```bash
-find tests/ examples/ -name "*.py" | xargs sed -i 's/import lipgloss/import pygloss/g'
+find tests/ examples/ -name "*.py" | xargs sed -i 's/import pygloss/import pygloss/g'
 ```
 
-**Step 3: Bulk-replace `from lipgloss` → `from pygloss` in all Python files**
+**Step 3: Bulk-replace `from pygloss` → `from pygloss` in all Python files**
 
 ```bash
-find tests/ examples/ -name "*.py" | xargs sed -i 's/from lipgloss/from pygloss/g'
+find tests/ examples/ -name "*.py" | xargs sed -i 's/from pygloss/from pygloss/g'
 ```
 
 **Step 4: Bulk-replace `lipgloss\.` references (e.g. `lipgloss.Style`) in tests and examples**
@@ -154,7 +154,7 @@ git commit -m "refactor: rename package lipgloss → pygloss"
 
 ### Task 3: Update bubbletea → bubblepy references
 
-Three files reference `bubbletea`: two example files and one test file. Each needs its `import bubbletea` replaced with `import bubblepy`, and the files themselves renamed.
+Three files reference `bubblepy`: two example files and one test file. Each needs its `import bubbletea` replaced with `import bubblepy`, and the files themselves renamed.
 
 **Step 1: Rename example files with git mv**
 
@@ -185,14 +185,14 @@ sed -i 's/import bubbletea/import bubblepy/g' \
     tests/test_bubblepy_integration.py
 ```
 
-**Step 5: Replace `bubbletea` module variable references (e.g. `bubbletea = pytest.importorskip...`)**
+**Step 5: Replace `bubblepy` module variable references (e.g. `bubbletea = pytest.importorskip...`)**
 
 ```bash
 sed -i 's/bubbletea = pytest\.importorskip/bubblepy = pytest.importorskip/g' \
     tests/test_bubblepy_integration.py
 ```
 
-**Step 6: Replace remaining `bubbletea` identifier references in BUBBLEPY_ISSUES.md header**
+**Step 6: Replace remaining `bubblepy` identifier references in BUBBLEPY_ISSUES.md header**
 
 ```bash
 sed -i 's/Bubbletea Fork/Bubblepy Fork/g; s/tbdtechpro\/bubbletea/tbdtechpro\/bubblepy/g' BUBBLEPY_ISSUES.md
@@ -251,7 +251,7 @@ Actually, do these replacements precisely with a single sed call:
 ```bash
 sed -i \
   -e 's/^name = "lipgloss"/name = "pygloss"/' \
-  -e 's|https://github.com/tbdtechpro/lipgloss|https://github.com/tbdtechpro/pygloss|g' \
+  -e 's|https://github.com/tbdtechpro/pygloss|https://github.com/tbdtechpro/pygloss|g' \
   -e 's/include = \["lipgloss\*"\]/include = ["pygloss*"]/' \
   -e 's/^lipgloss = \["py\.typed"\]/pygloss = ["py.typed"]/' \
   -e 's/"lipgloss"/"pygloss"/' \
@@ -264,7 +264,7 @@ sed -i \
 ```bash
 sed -i \
   -e 's/name="lipgloss"/name="pygloss"/' \
-  -e 's|https://github.com/tbdtechpro/lipgloss|https://github.com/tbdtechpro/pygloss|g' \
+  -e 's|https://github.com/tbdtechpro/pygloss|https://github.com/tbdtechpro/pygloss|g' \
   -e 's/"lipgloss": \["py\.typed"\]/"pygloss": ["py.typed"]/' \
   -e 's/"lipgloss"/"pygloss"/g' \
   setup.py
@@ -320,9 +320,9 @@ git commit -m "chore: update package name to pygloss in pyproject.toml and setup
 cd /home/matt/github/pygloss
 # Replace package/repo references but preserve the charmbracelet/lipgloss upstream URL
 find . -name "*.md" ! -path "./.git/*" | xargs sed -i \
-  -e 's|tbdtechpro/lipgloss|tbdtechpro/pygloss|g' \
-  -e 's/`import lipgloss`/`import pygloss`/g' \
-  -e 's/pip install lipgloss/pip install pygloss/g'
+  -e 's|tbdtechpro/pygloss|tbdtechpro/pygloss|g' \
+  -e 's/`import pygloss`/`import pygloss`/g' \
+  -e 's/pip install pygloss/pip install pygloss/g'
 ```
 
 **Step 2: Replace bubbletea → bubblepy in .md files**
@@ -330,8 +330,8 @@ find . -name "*.md" ! -path "./.git/*" | xargs sed -i \
 ```bash
 find . -name "*.md" ! -path "./.git/*" | xargs sed -i \
   -e 's/tbdtechpro\/bubbletea/tbdtechpro\/bubblepy/g' \
-  -e 's/Python Bubble Tea/Python Bubblepy/g' \
-  -e 's/`bubbletea`/`bubblepy`/g' \
+  -e 's/Python Bubblepy/Python Bubblepy/g' \
+  -e 's/`bubblepy`/`bubblepy`/g' \
   -e 's/import bubbletea/import bubblepy/g'
 ```
 
@@ -339,14 +339,14 @@ find . -name "*.md" ! -path "./.git/*" | xargs sed -i \
 
 Open `README.md` and update:
 - Title: `# lipgloss — Python port (experiment)` → `# pygloss — Python port of Lip Gloss`
-- Any `pip install lipgloss` → `pip install pygloss`
-- Any `import lipgloss` → `import pygloss` in code blocks
+- Any `pip install pygloss` → `pip install pygloss`
+- Any `import pygloss` → `import pygloss` in code blocks
 - Status section note about "Go source remains as reference" → remove or update to note Go source has been removed; pygloss is the Python implementation
 
 **Step 4: Run a final grep to catch any remaining stale references**
 
 ```bash
-grep -rn "tbdtechpro/lipgloss\|tbdtechpro/bubbletea\|import lipgloss\|import bubbletea" \
+grep -rn "tbdtechpro/pygloss\|tbdtechpro/bubblepy\|import pygloss\|import bubbletea" \
   --include="*.md" --include="*.py" --include="*.toml" . | grep -v ".git" | grep -v "charmbracelet"
 ```
 
@@ -389,7 +389,7 @@ Expected: `All imports OK`
 **Step 3: Verify no stale references remain**
 
 ```bash
-grep -rn "tbdtechpro/lipgloss\|tbdtechpro/bubbletea\|import lipgloss\|import bubbletea\|\"lipgloss\"" \
+grep -rn "tbdtechpro/pygloss\|tbdtechpro/bubblepy\|import pygloss\|import bubbletea\|\"lipgloss\"" \
   --include="*.py" --include="*.toml" --include="*.md" --include="*.yml" . \
   | grep -v ".git" | grep -v "charmbracelet"
 ```

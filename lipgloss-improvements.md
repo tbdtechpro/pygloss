@@ -1,7 +1,7 @@
 # lipgloss — App Integration Issues
 # Source: discovered while building KeroGrid with bubbletea + lipgloss
 #
-# COPY TARGET: append this block to BUBBLETEA_ISSUES.md in tbdtechpro/lipgloss
+# COPY TARGET: append this block to BUBBLETEA_ISSUES.md in tbdtechpro/pygloss
 # ─────────────────────────────────────────────────────────────────────────────
 
 ---
@@ -95,8 +95,8 @@ string measurement.
 `lipgloss/utils.py` module:
 ```python
 # lipgloss/__init__.py additions
-from lipgloss.style import _visible_width as visible_width
-from lipgloss.style import _strip_ansi   as strip_ansi
+from pygloss.style import _visible_width as visible_width
+from pygloss.style import _strip_ansi   as strip_ansi
 ```
 With proper docstrings and inclusion in the test suite so they remain stable
 across versions.

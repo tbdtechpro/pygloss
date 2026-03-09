@@ -51,7 +51,7 @@ Python 3.10 or later is required.
 ## Quick Start
 
 ```python
-import lipgloss
+import pygloss
 
 style = (
     lipgloss.Style()
@@ -343,7 +343,7 @@ style = (
 ### Custom borders
 
 ```python
-from lipgloss.borders import Border
+from pygloss.borders import Border
 
 my_border = Border(
     top="._.:*:", bottom="._.:*:",
@@ -490,7 +490,7 @@ These functions measure the *visible* dimensions of ANSI-escaped strings,
 ignoring escape codes and handling double-wide Unicode characters correctly.
 
 ```python
-import lipgloss
+import pygloss
 
 s = lipgloss.Style().bold(True).render("Hello")
 
@@ -598,7 +598,7 @@ result = lipgloss.style_runes("Hello", [0, 2], matched, unmatched)
 ## Table Sub-package
 
 ```python
-from lipgloss import table
+from pygloss import table
 ```
 
 ### Basic usage
@@ -680,7 +680,7 @@ t = table.Table().width(60).height(10).offset(2)  # skip first 2 data rows
 ## List Sub-package
 
 ```python
-from lipgloss import list as lst
+from pygloss import list as lst
 ```
 
 ### Basic usage
@@ -754,7 +754,7 @@ l = lst.List("A", "B").hide(True)   # renders as empty string
 ## Tree Sub-package
 
 ```python
-from lipgloss import tree as tr
+from pygloss import tree as tr
 ```
 
 ### Basic usage
@@ -834,7 +834,7 @@ any scenario where multiple outputs with different capabilities coexist.
 
 ```python
 import io
-import lipgloss
+import pygloss
 
 # Create a renderer for a specific output
 buf = io.StringIO()
@@ -850,7 +850,7 @@ print(buf.getvalue())
 ### Forcing a color profile
 
 ```python
-from lipgloss.renderer import Renderer, ColorProfile
+from pygloss.renderer import Renderer, ColorProfile
 
 renderer = Renderer()
 # Inspect the detected profile

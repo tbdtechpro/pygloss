@@ -21,7 +21,7 @@ MAPPING = {'bubbletea': '/path/to/bubbletea/bubbletea', ...}
 …pointing at a `bubbletea/` *subdirectory* that does not exist.
 
 **Fix:** Add a `package-dir` entry to `pyproject.toml` so setuptools knows the
-`bubbletea` package root is the repository root itself:
+`bubblepy` package root is the repository root itself:
 
 ```toml
 [tool.setuptools.packages.find]
@@ -51,7 +51,7 @@ This is a dev-environment hack and should not be relied on for distribution.
 
 **Symptom:** `pip install bubbletea` installs the wrong package — a medical
 chatbot library (`bubbletea 0.0.2` by Baihan Lin, `github.com/doerlbh/bubbletea`)
-that has no `bubbletea` module and depends on `pandas`/`numpy`.
+that has no `bubblepy` module and depends on `pandas`/`numpy`.
 
 **Impact:** Any user or CI environment that runs `pip install bubbletea` expecting
 the Charm TUI framework will silently get the wrong package.
@@ -156,7 +156,7 @@ prefixed `_`, making them private and unstable.
 
 **Fix applied:** Both are now exported as public API from `lipgloss/__init__.py`:
 ```python
-from lipgloss import visible_width, strip_ansi
+from pygloss import visible_width, strip_ansi
 
 visible_width("\x1b[1mHello\x1b[0m")  # → 5
 strip_ansi("\x1b[32mGreen\x1b[0m")    # → "Green"

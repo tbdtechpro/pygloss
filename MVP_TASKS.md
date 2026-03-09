@@ -2,7 +2,7 @@
 
 Tasks required to bring the Python port to feature parity with the Go library for MVP status,
 and to verify it works in conjunction with the
-[Python Bubble Tea port](https://github.com/tbdtechpro/bubbletea).
+[Python Bubblepy port](https://github.com/tbdtechpro/bubblepy).
 
 Items are grouped by area and ordered by priority within each group.
 Completed items are checked off.
