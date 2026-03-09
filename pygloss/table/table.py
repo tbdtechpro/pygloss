@@ -27,7 +27,7 @@ from typing import Callable
 from ..borders import Border, rounded_border
 from ..join import join_horizontal
 from ..position import Top
-from ..size import height as _lipgloss_height
+from ..size import height as _height
 from ..style import Style
 from .resizing import Resizer
 from .rows import Data, StringData, data_to_matrix
@@ -385,8 +385,8 @@ class Table:
 
         if self._data.rows() > 0:
             if self._use_manual_height:
-                top_height = _lipgloss_height("".join(parts)) - 1
-                available_lines = self._height - (top_height + _lipgloss_height(bottom))
+                top_height = _height("".join(parts)) - 1
+                available_lines = self._height - (top_height + _height(bottom))
                 if available_lines > self._data.rows():
                     available_lines = self._data.rows()
                 parts.append(self._construct_rows(available_lines))
