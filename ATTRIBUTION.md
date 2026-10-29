@@ -1,8 +1,7 @@
 # Attribution
 
-This repository is an experiment in AI-assisted ("vibe-coded") software development. The Python code,
-commit history, tests, and documentation were generated primarily by AI with minimal direct human
-authorship of the implementation itself.
+pygloss is designed, directed and maintained by Matt Phelps ([@tbdtechpro](https://github.com/tbdtechpro)),
+and built with AI-assisted development using Claude ([Anthropic](https://anthropic.com)).
 
 ---
 
@@ -14,9 +13,8 @@ All credit for the design, architecture, and reference implementation belongs to
 > **Lip Gloss** — Style definitions for nice terminal layouts
 > <https://github.com/charmbracelet/lipgloss>
 
-The Go source files in this repository are reproduced directly from the upstream Charm project and
-remain their copyright. They are included here solely as the reference implementation for the
-Python port and will be removed once the Python port reaches feature parity.
+The upstream Go source served as the reference implementation during the port. It was removed from
+this repository once the Python port reached feature parity, and it remains Charm's copyright.
 
 **Charm team members and contributors:** see
 <https://github.com/charmbracelet/lipgloss/graphs/contributors>
@@ -26,16 +24,11 @@ full license text (which covers both the original Go code and the Python port).
 
 ---
 
-## AI Tooling
-
-The Python port was generated using:
+## Tooling
 
 | Tool | Role |
 |------|------|
-| **Claude** (Anthropic) | Primary code generation, translation from Go to Python, test writing, documentation |
-
-The AI-generated code has been reviewed and directed by a human experimenter but has **not** been
-independently validated for correctness, completeness, or production readiness.
+| **Claude** (Anthropic) | AI pair-programmer: Go-to-Python translation, test writing and documentation, under my direction and review |
 
 ---
 
@@ -55,17 +48,14 @@ The Python port depends on the following open-source packages:
 
 ---
 
-## Experiment Context
+## Design Goals
 
-This port is part of an ongoing experiment to explore:
+- Translate a non-trivial, idiomatic Go library into *idiomatic* Python, not a line-by-line transliteration
+- Hold the port to the bar of full feature parity and a real test suite
+- Develop a repeatable, review-gated process for AI-assisted porting work
 
-- How well large language models can translate non-trivial, idiomatic Go code to idiomatic Python
-- The developer-experience of directing AI to build a complete library from scratch
-- Whether AI-generated code can pass a real test suite and meet production-quality standards
-
-The human role in this experiment was: experimental design, repository setup, direction of the AI,
-review of outputs, and judgement calls on API design. The AI's role was: reading the Go reference,
-writing Python implementations, writing tests, writing documentation, and iterating on bugs.
+I set the porting strategy and API design, directed the implementation, and reviewed the output.
+Claude did much of the line-level translation, test writing and documentation.
 
 ---
 

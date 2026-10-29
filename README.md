@@ -1,28 +1,27 @@
-# pygloss — Python port of Lip Gloss
+# pygloss
 
-This repository is an experiment to explore how feasible it is to translate a non-trivial Go library into idiomatic Python using AI-assisted ("vibe coded") development with minimal direct human authorship of the code itself.
+A Python port of [Lip Gloss](https://github.com/charmbracelet/lipgloss), Charm's library of CSS-like style definitions for terminal layouts:
+- colors, borders, padding, alignment and joins
+- `table`, `list` and `tree` rendering
 
-The subject of the translation is [Lip Gloss](https://github.com/charmbracelet/lipgloss), a terminal styling library by [Charm](https://charm.sh) that provides a CSS-like declarative API for building styled TUI output.
+Pairs with [bubblepy](https://github.com/tbdtechpro/bubblepy), my port of Bubble Tea.
 
 ---
 
-## What this is
+## About this project
 
-- A research experiment, not a production library.
-- The Python code, commit history, and documentation in this repo are primarily AI-generated. They do not represent the engineering efforts of the human running the experiment.
-- The human's contribution is the experimental design, direction, review, and judgement calls — not the code itself.
+pygloss is the second half of my study in carrying a non-trivial Go library into idiomatic Python. I designed and directed the port and used AI-assisted development (Claude) for much of the implementation:
 
-## What this is not
-
-- A maintained or supported library.
-- A replacement for or competitor to the original [Go Lip Gloss](https://github.com/charmbracelet/lipgloss).
-- Validated software. No assumptions should be made about correctness, completeness, or fitness for any purpose until independent validation has been done.
+- **Parity as the bar.** Every core and sub-package feature of the Go library is ported. The Go source served as the reference implementation and was removed once parity was reached.
+- **A Pythonic API, not a transliteration.** It has a fluent, chainable `Style` builder, snake_case methods, and type information shipped with the package (`py.typed`).
+- **Verification.** 300+ tests cover style rendering, colors, borders, layout and the `table`/`list`/`tree` sub-packages. Integration tests check pygloss output against [bubblepy](https://github.com/tbdtechpro/bubblepy)'s renderer.
+- **Packaging.** The package was renamed from `lipgloss` to `pygloss`. The rename covered imports, tests, examples and CI config.
 
 ---
 
 ## Status
 
-Pre-alpha. The Python port has full feature parity with the Go library for all core and sub-package features. The Go source was used as the reference implementation during development but has been removed from this repo.
+Pre-alpha. The port has full feature parity with the Go library for all core and sub-package features. The Go source was used as the reference implementation during development but has been removed from this repo.
 
 | Area | Status |
 |------|--------|
@@ -36,7 +35,7 @@ Pre-alpha. The Python port has full feature parity with the Go library for all c
 | `table` sub-package | ✅ Implemented |
 | `list` sub-package | ✅ Implemented |
 | `tree` sub-package | ✅ Implemented |
-| Test suite (275 tests) | ✅ Implemented |
+| Test suite (300+ tests) | ✅ Implemented |
 | CI workflow (Python 3.10–3.12) | ✅ Implemented |
 | Example scripts | ✅ Implemented |
 
@@ -45,8 +44,10 @@ Pre-alpha. The Python port has full feature parity with the Go library for all c
 ## Python Quick Start
 
 ```bash
-pip install pygloss
+pip install git+https://github.com/tbdtechpro/pygloss
 ```
+
+(pygloss is not published on PyPI.)
 
 Or for development (editable install with dev dependencies):
 
@@ -86,7 +87,7 @@ pytest  # run the test suite
 
 ## Original library
 
-All credit for the design and architecture belongs to the [Charm](https://charm.sh) team.
+All credit for the original design and architecture belongs to the [Charm](https://charm.sh) team. pygloss is an independent port and is not affiliated with or endorsed by Charm.
 
 > [github.com/charmbracelet/lipgloss](https://github.com/charmbracelet/lipgloss)
 
@@ -94,7 +95,7 @@ All credit for the design and architecture belongs to the [Charm](https://charm.
 
 ## Attribution
 
-Full credits — including the original Charm team and the AI tooling used in this experiment — are in [ATTRIBUTION.md](ATTRIBUTION.md).
+Full credits, including the original Charm team and the tooling used to build the port, are in [ATTRIBUTION.md](ATTRIBUTION.md).
 
 ---
 
